@@ -10,11 +10,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet var display: UILabel!
+    @IBOutlet private var display: UILabel!
     
-    var userIsTyping = false
+    private var userIsTyping = false
     
-    @IBAction func touchDigit(sender: UIButton)
+    @IBAction private func touchDigit(sender: UIButton)
     {
         let digit = sender.currentTitle!
         if userIsTyping {
@@ -26,13 +26,28 @@ class ViewController: UIViewController {
         userIsTyping = true
     }
     
-    @IBAction func performOperation(sender: UIButton)
-    {
-        userIsTyping = false
-        if let mathematicalSymbol = sender.currentTitle {
-            if mathematicalSymbol == "π" {
-                display.text = String(M_PI)
-            }
+    // computed property - does not exist in memory
+    private var displayValue: Double {
+        get {
+            return Double(display.text!)!
         }
+        set {
+            display.text = String(newValue)
+        }
+    }
+    
+    private var brain = CalculatorBrain()
+    
+    @IBAction private func performOperation(sender: UIButton)
+    {
+        if userIsTyping {
+            brain.setOperand(displayValue)
+            userIsTyping = false
+        }
+        
+        if let mathematicalSymbol = sender.currentTitle {
+            brain.performOperation(mathematicalSymbol)
+        }
+        displayValue = brain.result
     }
 }
