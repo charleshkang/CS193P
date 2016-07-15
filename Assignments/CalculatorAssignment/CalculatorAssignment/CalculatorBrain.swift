@@ -80,6 +80,6 @@ class CalculatorBrain {
     
     private func clearValue()
     {
-        accumulator = 0.0
+        accumulator = 0
     }
 }

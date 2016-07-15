@@ -11,7 +11,14 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet private var display: UILabel!
-    private var userIsTyping = false
+    private var userIsInMiddleOfTypingFloatingPointNumber = false
+    private var userIsInMiddleOfTyping = false {
+        didSet {
+            if !userIsInMiddleOfTyping {
+                userIsInMiddleOfTypingFloatingPointNumber = false
+            }
+        }
+    }
     private var brain = CalculatorBrain()
     
     private var displayValue: Double {
@@ -25,9 +32,9 @@ class ViewController: UIViewController {
     
     @IBAction func performOperation(sender: UIButton)
     {
-        if userIsTyping {
+        if userIsInMiddleOfTyping {
             brain.setOperand(displayValue)
-            userIsTyping = false
+            userIsInMiddleOfTyping = false
         }
         
         if let mathematicalSymbol = sender.currentTitle {
@@ -38,13 +45,24 @@ class ViewController: UIViewController {
     
     @IBAction func touchDigit(sender: UIButton)
     {
-        let digit = sender.currentTitle!
-        if userIsTyping {
+        var digit = sender.currentTitle!
+        
+        if digit == "." {
+            if userIsInMiddleOfTypingFloatingPointNumber {
+                return
+            }
+            if !userIsInMiddleOfTyping {
+                digit = "."
+            }
+            userIsInMiddleOfTypingFloatingPointNumber = true
+        }
+        
+        if userIsInMiddleOfTyping {
             let textCurrentlyInDisplay = display.text!
             display.text = textCurrentlyInDisplay + digit
         } else {
             display.text = digit
+            userIsInMiddleOfTyping = true
         }
-        userIsTyping = true
     }
 }
