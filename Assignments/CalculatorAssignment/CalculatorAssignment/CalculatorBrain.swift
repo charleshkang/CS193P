@@ -12,6 +12,26 @@ class CalculatorBrain {
     
     private var accumulator = 0.0
     private var pending: PendingBinaryOperationInfo?
+    private var internalProgram = [AnyObject]()
+    
+    typealias PropertyList = AnyObject
+    var program: PropertyList {
+        get {
+            return internalProgram
+        }
+        set {
+            clearValue()
+            if let arrayOfOps = newValue as? [AnyObject] {
+                for op in arrayOfOps {
+                    if let operand = op as? Double {
+                        setOperand(operand)
+                    } else if let operation = op as? String {
+                        performOperation(operation)
+                    }
+                }
+            }
+        }
+    }
     
     private var operations: Dictionary<String,Operation> = [
         "π" : Operation.Constant(M_PI),
@@ -49,6 +69,7 @@ class CalculatorBrain {
     
     func performOperation(symbol: String)
     {
+        internalProgram.append(symbol)
         if let operation = operations[symbol] {
             switch operation {
             case .Constant(let value):
@@ -65,9 +86,11 @@ class CalculatorBrain {
             }
         }
     }
+    
     func setOperand(operand: Double)
     {
         accumulator = operand
+        internalProgram.append(operand)
     }
     
     private func executePendingBinaryOperation()
@@ -81,5 +104,7 @@ class CalculatorBrain {
     private func clearValue()
     {
         accumulator = 0
+        pending = nil
+        internalProgram.removeAll()
     }
 }

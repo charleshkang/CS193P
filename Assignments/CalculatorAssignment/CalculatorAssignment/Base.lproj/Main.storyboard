@@ -60,22 +60,22 @@
                                                         <rect key="frame" x="280" y="0.0" width="140" height="90"/>
                                                         <color key="backgroundColor" red="0.79957306994151267" green="0.80080953133016652" blue="0.81967776526129033" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <state key="normal" title="cos">
+                                                        <state key="normal" title="restore">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oZ7-jo-7ev"/>
+                                                            <action selector="restore" destination="BYZ-38-t0r" eventType="touchUpInside" id="nka-NU-1CL"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8o4-9t-bpQ">
                                                         <rect key="frame" x="420" y="0.0" width="140" height="90"/>
                                                         <color key="backgroundColor" red="0.79957306994151267" green="0.80080953133016652" blue="0.81967776526129033" alpha="1" colorSpace="calibratedRGB"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                        <state key="normal" title="tan">
+                                                        <state key="normal" title="save">
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Z1J-85-YYh"/>
+                                                            <action selector="save" destination="BYZ-38-t0r" eventType="touchUpInside" id="3ec-X1-dJ1"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -91,7 +91,7 @@
                                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RX5-Ic-kC2"/>
+                                                            <action selector="performOperation:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pfg-25-ghW"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rm-xa-4VX">
